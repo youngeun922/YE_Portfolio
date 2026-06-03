@@ -439,3 +439,154 @@ body[data-theme="light"] .theme-toggle-btn .icon-moon { display: none !important
 body[data-theme="light"] img {box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);}
 
 body[data-theme="light"] .proj-mock {background-color: #eef2f6; border-color: rgba(15, 23, 42, 0.05);}
+
+
+/* ══════════════════════════════════════ 반응형 (모바일) ══════════════════════════════════════ */
+
+/* ── 태블릿 (768px ~ 1024px) ── */
+@media (max-width: 1024px) {
+	:root {
+		--pad: 40px;
+	}
+
+	.inner { padding: 0 var(--pad); }
+
+	/* NAV */
+	.nav-period { display: none; }
+	.nav-links { gap: 20px; }
+
+	/* MAIN */
+	.bottom-info { grid-template-columns: 1fr 1fr; }
+	.bottom-cell:nth-child(2) { border-right: none; }
+	.bottom-cell:last-child { grid-column: 1 / -1; border-top: 1px solid var(--line); border-right: none; }
+	.bottom-cell:first-child { padding-left: 0; }
+
+	/* PROJECTS */
+	.proj-card-grid { grid-template-columns: 200px 1fr; gap: 36px; }
+	.proj-card-grid.reverse { grid-template-columns: 1fr 200px; }
+
+	/* PROCESS STRIP */
+	.proj-process-strip { grid-template-columns: repeat(2, 1fr); }
+	.proj-result-strip { grid-template-columns: repeat(3, 1fr); }
+
+	/* SKILLS */
+	.skills-grid { grid-template-columns: repeat(3, 1fr); }
+
+	/* TIMELINE */
+	.tl-track::before { left: 81px; }
+	.tl-node { left: 82px !important; }
+}
+
+
+/* ── 모바일 (max 767px) ── */
+@media (max-width: 767px) {
+	:root {
+		--pad: 20px;
+	}
+
+	body { font-size: 15px; }
+
+	.inner { padding: 0 var(--pad); }
+	section { padding: 56px 0; }
+
+	/* ── NAV ── */
+	.nav-inner { padding: 0 var(--pad); }
+	.nav-period { display: none; }
+	.nav-links { gap: 14px; }
+	.nav-links a { font-size: 11px; letter-spacing: 0.4px; }
+	.nav-logo { font-size: 15px; }
+
+	/* ── MAIN ── */
+	.main-content { padding: 56px var(--pad) 52px; }
+
+	.headline { letter-spacing: -1.5px; }
+
+	.bottom-info {
+		grid-template-columns: 1fr;
+		margin-top: 40px;
+	}
+	.bottom-cell {
+		padding: 20px 0;
+		border-right: none;
+		border-top: 1px solid var(--line);
+	}
+	.bottom-cell:first-child { padding-left: 0; border-top: 1px solid var(--line); }
+	.bottom-cell:last-child { border-right: none; }
+
+	.bc-value strong { font-size: 20px; }
+
+	/* ── CHAPTER 구분선 ── */
+	.chapter { padding: 14px 0; }
+	.chapter-inner { font-size: 11px; letter-spacing: 1px; }
+
+	/* ── STORY ── */
+	section.story-section { font-size: 15px; }
+	.story-pull { font-size: 18px; margin: 24px 0; padding-left: 16px; }
+
+	/* ── PROJECT CARDS ── */
+	.proj-card { padding: 48px 0; }
+	.proj-card:last-child { padding-bottom: 0; }
+
+	.proj-card-grid {
+		grid-template-columns: 1fr !important;
+		gap: 28px;
+	}
+	.proj-card-grid.reverse .proj-card-meta { order: 0; }
+	.proj-card-grid.reverse .proj-card-body  { order: 0; }
+
+	.proj-card-meta { position: static !important; }
+
+	.proj-index { font-size: 40px !important; margin-bottom: 10px !important; }
+	.proj-title { font-size: 24px !important; margin-bottom: 14px !important; }
+
+	/* 프로세스 스트립 — 2열 */
+	.proj-process-strip { grid-template-columns: repeat(2, 1fr); }
+
+	/* 결과 스트립 — 1열 */
+	.proj-result-strip { grid-template-columns: 1fr; }
+
+	/* ── TIMELINE ── */
+	.tl-header-title { margin-bottom: 36px; }
+
+	.tl-track::before { left: 0; top: 0; bottom: 0; }
+
+	.tl-item {
+		grid-template-columns: 1fr;
+		gap: 8px;
+		padding: 20px 0 20px 24px;
+		position: relative;
+	}
+
+	.tl-date {
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: flex-start !important;
+		padding-right: 0 !important;
+		padding-top: 0 !important;
+		font-size: 11px;
+		color: var(--text3) !important;
+	}
+
+	.tl-node {
+		position: absolute !important;
+		left: -4px !important;
+		top: 26px !important;
+		transform: none !important;
+	}
+
+	/* ── SKILLS ── */
+	.skills-title { margin-bottom: 32px; }
+
+	.skills-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.sk-group { padding: 22px 20px 24px; }
+
+	/* ── CLOSING ── */
+	.closing { padding: 72px var(--pad); }
+	.closing-story { padding: 0 0 0 16px; }
+
+	/* ── FOOTER ── */
+	footer { padding: 24px var(--pad); font-size: 12px; line-height: 1.8; }
+}
