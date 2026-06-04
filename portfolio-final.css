@@ -394,6 +394,94 @@ section.story-section {
 .closing-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
 
 
+/* ══════════════════════════════════════ video ══════════════════════════════════════ */
+.video-project-grid {
+	display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  	width: 100%; max-width: var(--max);	margin: 0 auto;
+	  
+	.video-card {
+		background-color: var(--bg2); border: 1px solid var(--line); border-radius: var(--r);
+		overflow: hidden; transition: background-color 0.3s, border-color 0.3s, transform 0.3s;
+		
+		&:hover {
+			transform: translateY(-2px); border-color: var(--sky);
+
+			.video-overlay {background: rgba(0, 0, 0, 0) !important;}
+			.play-hint-tag {opacity: 0 !important;}
+		}
+
+		.video-wrapper {
+			position: relative; width: 100%; padding-top: 56.25%; 
+			background-color: #000; overflow: hidden;
+
+			video {
+				position: absolute; top: 0; left: 0;
+				width: 100%; height: 100%; object-fit: cover; 
+			}
+
+			.video-overlay {
+				position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  				background-color: rgba(8, 19, 42, 0.4); pointer-events: none; transition: background-color 0.3s ease, opacity 0.3s ease; 
+  				display: flex; align-items: center; justify-content: center; opacity: 1; z-index: 2; 
+			
+				.play-hint-tag {
+					background-color: var(--sky-dim); color: var(--sky); padding: 6px 14px; 
+					border: 1px solid var(--sky); border-radius: 20px; box-shadow: 0 0 10px var(--sky-glow); transition: opacity 0.3s;
+					font-size: 12px; font-weight: 700; letter-spacing: 1px;
+				}
+			}
+		}
+
+		
+		.video-info {
+			padding: 20px;
+			
+			h3 {color: var(--text); font-size: 13px; margin-bottom: 8px;}
+			
+			p {color: var(--text2); font-size: 11px; line-height: 1.5;}
+		}
+	}
+}
+
+
+/* ══════════════════════════════════════ webtoon & cardnews ══════════════════════════════════════ */
+.proj-section {
+ 	width: 100%; max-width: var(--max);  display: grid; margin: 20px auto; align-items: flex-start;
+
+	.webtoon-accordion {
+		background-color: var(--bg2); border: 1px solid var(--line); border-radius: var(--r);
+		overflow: hidden; transition: border-color 0.3s;
+		 
+
+		&:hover {border-color: var(--violet);}
+
+		.accordion-header {
+			width: 100%; padding: 24px; background: transparent; border: none;
+			display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+			font-size: 17px; color: var(--text); font-weight: 600;
+		
+			.arrow-icon {color: var(--text3); transition: transform 0.3s ease;}
+		}
+
+		.accordion-body {
+			max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			background-color: #ffffff; display: flex; justify-content: center;
+		}
+	}
+}
+.webtoon-section { grid-template-columns: repeat(2, 1fr); gap: 24px;}
+.cardnews-section {
+	grid-template-columns: repeat(3, 1fr); gap: 20px;
+
+	.accordion-header {padding:0 !important;}
+}
+
+.webtoon-accordion.active .accordion-body {max-height: 2500px; height: auto; }
+.webtoon-accordion.active .arrow-icon {transform: rotate(180deg); color: var(--mint);}
+
+.full-webtoon-img {width: 100%; height: auto;}
+
+
 /* ══════════════════════════════════════ footer ══════════════════════════════════════ */
 footer {
 	text-align: center; padding: 28px var(--pad);
@@ -430,12 +518,9 @@ body[data-theme="light"] nav {
 .theme-toggle-btn .icon-sun { display: none !important; }
 .theme-toggle-btn .icon-moon { display: inline-block !important; }
 
-/* 2. 라이트 모드 상태일 때 (body에 data-theme="light"가 붙었을 때) */
-/* 해(☀️)를 보여주고 달(🌙)은 숨김 */
 body[data-theme="light"] .theme-toggle-btn .icon-sun { display: inline-block !important; }
 body[data-theme="light"] .theme-toggle-btn .icon-moon { display: none !important; }
 
-/* 💡 스크린샷 이미지 가독성 보완 (라이트모드일 때 이미지가 배경에 묻히지 않도록 연한 그림자 추가) */
 body[data-theme="light"] img {box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);}
 
 body[data-theme="light"] .proj-mock {background-color: #eef2f6; border-color: rgba(15, 23, 42, 0.05);}
@@ -539,6 +624,48 @@ body[data-theme="light"] .proj-mock {background-color: #eef2f6; border-color: rg
 	.proj-index { font-size: 40px !important; margin-bottom: 10px !important; }
 	.proj-title { font-size: 24px !important; margin-bottom: 14px !important; }
 
+	.video-project-grid {
+    grid-template-columns: 1fr;
+  }
+ /* 1. 5번 섹션 전체 내부 여백(Padding) 조절 */
+  .section-05 .nav-inner, 
+  .webtoon-project-container {
+    padding: 20px 16px !important;
+  }
+
+  /* 2. 상단 웹툰 아코디언 버튼 트랙: 가로(Row)에서 세로(Column) 정렬로 변경 */
+  .webtoon-viewer-track {
+    flex-direction: column !important;
+    align-items: stretch !important; /* 모바일에서는 가로 폭을 꽉 채우도록 설정 */
+    gap: 12px !important;
+  }
+
+  /* 3. 개별 웹툰 아코디언 박스 */
+  .webtoon-accordion {
+    width: 100% !important;
+  }
+  
+  .accordion-header {
+    padding: 16px 20px !important; /* 모바일 화면에 맞게 패딩 축소 */
+    font-size: 0.95rem !important; /* 글자 크기 최적화 */
+  }
+
+  /* 4. 하단 카드뉴스 시리즈 그리드: 3열에서 1열(세로 한 줄) 정렬로 변경 */
+  .card-news-grid,
+  .contents-slider-track {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  /* 5. 개별 카드뉴스 아이템 폭 제어 */
+  .slide-item {
+    flex: 0 0 auto !important;
+    width: 100% !important; /* 모바일 화면 폭에 꽉 차게 조절 */
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important; /* 정사각형 비율 유지 */
+  }
 	/* 프로세스 스트립 — 2열 */
 	.proj-process-strip { grid-template-columns: repeat(2, 1fr); }
 
