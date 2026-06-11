@@ -41,32 +41,33 @@
       <span class="issue-text">Design · Publishing · 4 Years</span>
 
       <h1 class="headline">
-        <span class="headline-row">보이는 것을</span> <br />
-        <span class="headline-row">만들고, <span style="color:var(--rose)">작동하게</span></span><br />
-        <span class="headline-row"><span class="sub-line">만드는 사람</span></span>
+        보이는 것을 만들고,<br>
+        <span class="change-text rose">작동하게</span> 만드는 사람
       </h1>
 
-      <div class="bottom-info">
-        <div class="bottom-cell">
-          <p class="bc-label">재직 기간</p>
-          <div class="bc-value">
-            <strong>4년</strong>
-            2022.05.02 - 2026.05.15
+      <div class="main-summary-container">
+        <div class="summary-card">
+          <p class="summary-label">재직 기간</p>
+          <div class="summary-value">
+            <span class="highlight-num">4</span><span class="unit">년</span>
           </div>
+          <p class="summary-desc">2022.05.02 - 2026.05.15</p>
         </div>
-        <div class="bottom-cell">
-          <p class="bc-label">담당 업무</p>
-          <div class="bc-value">
-            <strong>디자인 · 퍼블리셔</strong>
-            뉴스레터 · 배너 · HTML 퍼블리싱<br>기획자 및 타부서 협업
+
+        <div class="summary-card">
+          <p class="summary-label">담당 업무 · 성과</p>
+          <div class="summary-value">
+            <span class="highlight-num">78</span><span class="unit">회+</span>
           </div>
+          <p class="summary-desc">위클리 뉴스레터 디자인 & 마크업</p>
         </div>
-        <div class="bottom-cell">
-          <p class="bc-label">담당 사이트</p>
-          <div class="bc-value">
-            <strong>4개 브랜드</strong>
-            택스넷 · 이나우스아카데미<br>택스박스 · 택스에듀넷
+
+        <div class="summary-card">
+          <p class="summary-label">담당 사이트</p>
+          <div class="summary-value">
+            <span class="highlight-num">4</span><span class="unit">개</span>
           </div>
+          <p class="summary-desc">택스넷 · 이나우스아카데미 등</p>
         </div>
       </div>
     </div>
@@ -724,7 +725,7 @@
   <footer>
     2022.05.02 - 2026.05.15 &nbsp;·&nbsp; Design &amp; Publishing Portfolio &nbsp;·&nbsp; All Rights Reserved
   </footer>
-
+<div class="cursor-glow"></div>
   <script>
     // [최종본] 기본 다크모드 고정 + 이모지 아이콘 완벽 동기화 스크립트
     const toggleBtn = document.querySelector('.theme-toggle-btn');
@@ -801,10 +802,43 @@
       }
     });
 
+    const words = ["작동하게", "가치 있게", "의도대로", "생동감 있게"];
+    const changeText = document.querySelector('.change-text');
+    let index = 0;
+
+    function changeWord() {
+      // 1. 서서히 사라지는 효과
+      changeText.style.opacity = 0;
+      changeText.style.transform = "translateY(10px)";
+      
+      setTimeout(() => {
+        // 2. 단어 변경
+        index = (index + 1) % words.length;
+        changeText.textContent = words[index];
+        
+        // 3. 다시 나타나는 효과
+        changeText.style.opacity = 1;
+        changeText.style.transform = "translateY(0)";
+      }, 400); // 사라지는 애니메이션 시간에 맞춤
+    }
+
+    // 초기 스타일 설정 및 2.5초마다 반복
+    changeText.style.transition = "all 0.4s ease";
+    setInterval(changeWord, 2500);
+
+    const glow = document.querySelector('.cursor-glow');
+
+    window.addEventListener('mousemove', (e) => {
+      // 마우스 위치로 조명 이동
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+    });
+
 
 
 
   </script>
 
 </body>
+
 </html>
